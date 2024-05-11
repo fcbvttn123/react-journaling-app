@@ -1,10 +1,15 @@
-import { Container, Typography } from "@material-ui/core"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { AllJournals } from "./pages/journals/AllJournals"
+import { CreateJournal } from "./pages/create-journal/CreateJournal"
 
 function App() {
   return (
-    <Container>
-      <Typography variant="h1" align="center" color="primary">Hello World</Typography>
-    </Container>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AllJournals />}/>
+        <Route path="/create" element={<CreateJournal />}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

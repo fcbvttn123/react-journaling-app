@@ -1,17 +1,8 @@
-import {
-  Button,
-  Container,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  TextField,
-  Typography,
-  makeStyles,
-} from "@material-ui/core";
+import { Button, Container, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography, makeStyles } from "@material-ui/core";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useHandleFormItemChange } from "./handleFormItemChange";
+import { useHandleFormSubmit } from "./handleFormSubmit";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -21,93 +12,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const localStorageKey = "react-journal-app"
-
 export function CreateJournal() {
-  const classes = useStyles();
-  const currentDate = format(new Date(), "yyyy-MM-dd");
 
-  const [allJournals, setAllJournals] = useState(JSON.parse(localStorage.getItem(localStorageKey)) || [])
-  const [textFieldError, setTextFieldError] = useState(false);
+  const classes = useStyles();
+
   const [formData, setFormData] = useState({
-    date: currentDate,
+    date: format(new Date(), "yyyy-MM-dd"),
     description: "",
     daySummary: "",
   });
 
-  function handleFormItemChange(e) {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
-
-  function handleFormSubmit(e) {
-    e.preventDefault()
-    if(!formData.description) {
-      setTextFieldError(true)
-    }
-    setAllJournals(prev => {
-      return [...prev, formData]
-    })
-  }
-
-  useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(allJournals))
-    setFormData({
-      date: currentDate,
-      description: "",
-      daySummary: "",
-    })
-  }, [allJournals])
-
   return (
+
     <Container>
+
       {/* Header Text */}
-      <Typography
-        variant="h4"
-        component="h1"
-        color="secondary"
-        name="date"
-        value={formData.date}
-        gutterBottom
-      >
+      <Typography variant="h4" component="h1" color="secondary" name="date" value={formData.date} gutterBottom>
         Create Your Today's Journal
       </Typography>
+
       {/* Form */}
-      <form onSubmit={handleFormSubmit}>
-        <TextField
-          id="date"
-          name="date"
-          label="Date"
-          type="date"
-          color="secondary"
-          onChange={handleFormItemChange}
-          defaultValue={formData.date}
-          className={classes.textField}
-        />
+      <form onSubmit={(e) => useHandleFormSubmit(e, formData)}>
+        <TextField id="date" name="date" label="Date" type="date" color="secondary" onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} defaultValue={formData.date} className={classes.textField} />
         <br />
         <br />
-        <TextField
-          id="outlined-multiline-static"
-          name="description"
-          label="How was your day?"
-          color="secondary"
-          variant="filled"
-          value={formData.description}
-          error={textFieldError}
-          onChange={handleFormItemChange}
-          minRows={7}
-          multiline
-          required
-          fullWidth
-        />
+        <TextField onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} id="outlined-multiline-static" name="description" label="How was your day?" color="secondary" variant="filled" value={formData.description} minRows={7} multiline required fullWidth />
         <br />
         <br />
         <FormControl component="fieldset">
           <FormLabel component="legend" color="secondary"> Your day summary </FormLabel>
-          <RadioGroup aria-label="gender" name="daySummary" onChange={handleFormItemChange}>
+          <RadioGroup onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} name="daySummary" >
             <FormControlLabel value="bad" control={<Radio />} label="Bad" />
             <FormControlLabel value="normal" label="Normal" control={<Radio />} />
             <FormControlLabel value="good" control={<Radio />} label="Good" />
@@ -115,10 +49,11 @@ export function CreateJournal() {
         </FormControl>
         <br />
         <br />
-        <Button variant="contained" color="secondary" type="submit">
-          Submit
-        </Button>
+        <Button variant="contained" color="secondary" type="submit"> Submit </Button>
       </form>
+
     </Container>
+
   );
+
 }

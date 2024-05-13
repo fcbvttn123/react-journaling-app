@@ -1,6 +1,9 @@
 import { Avatar, Card, CardContent, CardHeader, IconButton, Typography, makeStyles } from "@material-ui/core";
 import { green, grey, pink } from '@material-ui/core/colors';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useCapitalizeFirstLetter } from "../hooks/capitalizeFirstLetter";
+
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,21 +48,17 @@ export function JournalCard({avatar, title, date, content}) {
         avatarColor = classes.avatarGreyColor
     }
 
-    function capitalizeFirstLetter(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
     return (
         <Card className={classes.root} elevation={6} style={{marginLeft: "auto", marginRight: "auto"}}>
             <CardHeader 
                 avatar={<Avatar className={avatarColor}>{avatar}</Avatar>} 
-                title={<Typography variant="h6" component="h1">{`${capitalizeFirstLetter(title)} Day`}</Typography>}
+                title={<Typography variant="h6" component="h1">{`${useCapitalizeFirstLetter(title)} Day`}</Typography>}
                 subheader={date}
                 action={<IconButton onClick={() => console.log("hi")}> <DeleteIcon /> </IconButton>}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    {capitalizeFirstLetter(content)}
+                    {useCapitalizeFirstLetter(content)}
                 </Typography>
             </CardContent>
         </Card>

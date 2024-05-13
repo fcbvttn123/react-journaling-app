@@ -1,11 +1,25 @@
-import { Grid } from "@material-ui/core";
+import { Drawer, Grid, makeStyles } from "@material-ui/core";
 import { JournalCard } from "../../components/Card";
 
 const localStorageKey = "react-journal-app"
+const drawerWidth = 240;
+const useStyles = makeStyles((theme) => ({
+    drawer: {
+        [theme.breakpoints.up('sm')]: {
+            width: drawerWidth,
+            flexShrink: 0,
+        },
+    },
+}))
 
 export function AllJournals() {
+
+    const classes = useStyles();
+
     return (
         <div className="m-4">
+            
+            {/* Cards */}
             <Grid container spacing={3} justifyContent="center" alignItems="center">
                 {
                     JSON.parse(localStorage.getItem(localStorageKey)).map((e, i) => 
@@ -15,6 +29,15 @@ export function AllJournals() {
                     )
                 }
             </Grid>
+
+            {/* Drawer */}
+            <nav className={classes.drawer}>
+                <Drawer>
+
+                </Drawer>
+            </nav>
+
         </div>
     )
+    
 }

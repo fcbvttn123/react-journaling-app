@@ -53,13 +53,13 @@ export function JournalCard({avatar, title, date, content}) {
         <Card className={classes.root} elevation={6} style={{marginLeft: "auto", marginRight: "auto"}}>
             <CardHeader 
                 avatar={<Avatar className={avatarColor}>{avatar}</Avatar>} 
-                title={`${capitalizeFirstLetter(title)} Day`}
+                title={<Typography variant="h6" component="h1">{`${capitalizeFirstLetter(title)} Day`}</Typography>}
                 subheader={date}
                 action={<IconButton onClick={() => console.log("hi")}> <DeleteIcon /> </IconButton>}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    {content}
+                    {capitalizeFirstLetter(content)}
                 </Typography>
             </CardContent>
         </Card>

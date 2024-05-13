@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const localStorageKey = "react-journal-app"
+
 export function CreateJournal() {
   const classes = useStyles();
   const currentDate = format(new Date(), "yyyy-MM-dd");
@@ -41,7 +43,7 @@ export function CreateJournal() {
   }
 
   function handleFormSubmit() {
-    console.log(formData);
+    localStorage.setItem(localStorageKey, JSON.stringify(formData))
   }
 
   return (

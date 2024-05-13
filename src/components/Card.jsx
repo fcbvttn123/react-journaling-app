@@ -1,5 +1,6 @@
-import { Avatar, Card, CardContent, CardHeader, Typography, makeStyles } from "@material-ui/core";
-import { red } from '@material-ui/core/colors';
+import { Avatar, Card, CardContent, CardHeader, IconButton, Typography, makeStyles } from "@material-ui/core";
+import { green, grey, pink } from '@material-ui/core/colors';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,14 +20,30 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    avatar: {
-        backgroundColor: red[500],
+    avatarGreenColor: {
+        color: theme.palette.getContrastText(green[500]),
+        backgroundColor: green[500],
     },
+    avatarGreyColor: {
+        color: theme.palette.getContrastText(grey[500]),
+        backgroundColor: grey[500],
+    }, 
+    avatarPinkColor: {
+        color: theme.palette.getContrastText(pink[500]),
+        backgroundColor: pink[500],
+    }
 }));
 
 export function JournalCard({avatar, title, date, content}) {
 
     const classes = useStyles();
+    let avatarColor = classes.avatarGreenColor
+
+    if(title == "normal") {
+        avatarColor = classes.avatarPinkColor
+    } else if(title == "bad") {
+        avatarColor = classes.avatarGreyColor
+    }
 
     function capitalizeFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
@@ -35,9 +52,10 @@ export function JournalCard({avatar, title, date, content}) {
     return (
         <Card className={classes.root} elevation={6} style={{marginLeft: "auto", marginRight: "auto"}}>
             <CardHeader 
-                avatar={<Avatar className={classes.avatar}>{avatar}</Avatar>} 
+                avatar={<Avatar className={avatarColor}>{avatar}</Avatar>} 
                 title={`${capitalizeFirstLetter(title)} Day`}
                 subheader={date}
+                action={<IconButton onClick={() => console.log("hi")}> <DeleteIcon /> </IconButton>}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">

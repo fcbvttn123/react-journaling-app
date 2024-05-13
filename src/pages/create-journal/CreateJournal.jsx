@@ -11,7 +11,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { format } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -27,6 +27,7 @@ export function CreateJournal() {
   const classes = useStyles();
   const currentDate = format(new Date(), "yyyy-MM-dd");
 
+  const [allJournals, setAllJournals] = useState(JSON.parse(localStorage.getItem(localStorageKey)) || [])
   const [textFieldError, setTextFieldError] = useState(false);
   const [formData, setFormData] = useState({
     date: currentDate,
@@ -42,12 +43,28 @@ export function CreateJournal() {
     }));
   }
 
-  function handleFormSubmit() {
-    localStorage.setItem(localStorageKey, JSON.stringify(formData))
+  function handleFormSubmit(e) {
+    e.preventDefault()
+    if(!formData.description) {
+      setTextFieldError(true)
+    }
+    setAllJournals(prev => {
+      return [...prev, formData]
+    })
   }
+
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, JSON.stringify(allJournals))
+    setFormData({
+      date: currentDate,
+      description: "",
+      daySummary: "",
+    })
+  }, [allJournals])
 
   return (
     <Container>
+      {/* Header Text */}
       <Typography
         variant="h4"
         component="h1"
@@ -58,7 +75,8 @@ export function CreateJournal() {
       >
         Create Your Today's Journal
       </Typography>
-      <form>
+      {/* Form */}
+      <form onSubmit={handleFormSubmit}>
         <TextField
           id="date"
           name="date"
@@ -76,12 +94,12 @@ export function CreateJournal() {
           name="description"
           label="How was your day?"
           color="secondary"
-          multiline
           variant="filled"
           value={formData.description}
           error={textFieldError}
           onChange={handleFormItemChange}
           minRows={7}
+          multiline
           required
           fullWidth
         />
@@ -97,7 +115,7 @@ export function CreateJournal() {
         </FormControl>
         <br />
         <br />
-        <Button variant="contained" color="secondary" onClick={handleFormSubmit}>
+        <Button variant="contained" color="secondary" type="submit">
           Submit
         </Button>
       </form>

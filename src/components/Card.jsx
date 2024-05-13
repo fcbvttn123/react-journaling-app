@@ -33,7 +33,7 @@ export function JournalCard({avatar, title, date, content}) {
     }
 
     return (
-        <Card className={classes.root} elevation={6}>
+        <Card className={classes.root} elevation={6} style={{marginLeft: "auto", marginRight: "auto"}}>
             <CardHeader 
                 avatar={<Avatar className={classes.avatar}>{avatar}</Avatar>} 
                 title={`${capitalizeFirstLetter(title)} Day`}

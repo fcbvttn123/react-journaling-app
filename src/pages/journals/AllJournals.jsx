@@ -1,26 +1,28 @@
-import { Drawer, Grid, makeStyles } from "@material-ui/core";
+import { Button, Grid, Hidden } from "@material-ui/core";
 import { JournalCard } from "../../components/Card";
+import { SideBarDesktop, SideBarMobile } from "../../components/SideBar";
+import { useState } from "react";
 
 const localStorageKey = "react-journal-app"
-const drawerWidth = 240;
-const useStyles = makeStyles((theme) => ({
-    drawer: {
-        [theme.breakpoints.up('sm')]: {
-            width: drawerWidth,
-            flexShrink: 0,
-        },
-    },
-}))
 
 export function AllJournals() {
 
-    const classes = useStyles();
+    const [mobileOpen, setMobileOpen] = useState(false)
 
     return (
-        <div className="m-4">
-            
+        <div className="flex">
+
+            {/* Drawer */}
+            <Hidden smUp implementation="css">
+                <SideBarMobile mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+            </Hidden>
+            <Hidden smDown implementation="css">
+                <SideBarDesktop />
+            </Hidden>
+
             {/* Cards */}
             <Grid container spacing={3} justifyContent="center" alignItems="center">
+                <Button onClick={() => setMobileOpen(!mobileOpen)}>Click me</Button>
                 {
                     JSON.parse(localStorage.getItem(localStorageKey)).map((e, i) => 
                         <Grid key={i} item xs={12} sm={6} lg={4}>
@@ -29,13 +31,6 @@ export function AllJournals() {
                     )
                 }
             </Grid>
-
-            {/* Drawer */}
-            <nav className={classes.drawer}>
-                <Drawer>
-
-                </Drawer>
-            </nav>
 
         </div>
     )

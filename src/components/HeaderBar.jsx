@@ -6,6 +6,12 @@ import { drawerWidth } from "./SideBar";
 const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+            display: 'none',
+        },
+        [theme.breakpoints.down('sm')]: {
+            display: 'block',
+        },
     },
     appBar: {
         [theme.breakpoints.up('sm')]: {
@@ -63,13 +69,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export function HeaderBar() {
+export function HeaderBar({setMobileOpen}) {
     const classes = useStyles()
     return (
         <div>
             <AppBar className={classes.appBar}>
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" onClick={() => setMobileOpen(prev => !prev)}>
                         <MenuIcon />
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>Hello David</Typography>

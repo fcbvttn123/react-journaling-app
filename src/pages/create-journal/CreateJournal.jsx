@@ -29,29 +29,29 @@ export function CreateJournal() {
       <div className="h-24 w-full"></div>
 
       {/* Header Text */}
-      <Typography variant="h4" component="h1" color="secondary" name="date" value={formData.date} gutterBottom>
+      <Typography variant="h4" component="h1" color="primary" name="date" value={formData.date} gutterBottom>
         Create Your Today's Journal
       </Typography>
 
       {/* Form */}
       <form onSubmit={(e) => useHandleFormSubmit(e, formData)}>
-        <TextField id="date" name="date" label="Date" type="date" color="secondary" onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} defaultValue={formData.date} className={classes.textField} />
+        <TextField id="date" name="date" label="Date" type="date" color="primary" onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} defaultValue={formData.date} className={classes.textField} />
         <br />
         <br />
-        <TextField onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} id="outlined-multiline-static" name="description" label="How was your day?" color="secondary" variant="filled" value={formData.description} minRows={7} multiline required fullWidth />
+        <TextField onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} id="outlined-multiline-static" name="description" label="How was your day?" color="primary" variant="filled" value={formData.description} minRows={7} multiline required fullWidth />
         <br />
         <br />
         <FormControl component="fieldset">
-          <FormLabel component="legend" color="secondary"> Your day summary </FormLabel>
-          <RadioGroup onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} name="daySummary" >
-            <FormControlLabel value="bad" control={<Radio />} label="Bad" />
-            <FormControlLabel value="normal" label="Normal" control={<Radio />} />
-            <FormControlLabel value="good" control={<Radio />} label="Good" />
+          <FormLabel component="legend" color="primary"> Your day summary </FormLabel>
+          <RadioGroup onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} name="daySummary" color="primary" >
+            <FormControlLabel value="bad" control={<Radio color="primary" />} label="Bad" color="primary" />
+            <FormControlLabel value="normal" label="Normal" control={<Radio color="primary" />} color="primary" />
+            <FormControlLabel value="good" control={<Radio color="primary" />} label="Good" color="primary" />
           </RadioGroup>
         </FormControl>
         <br />
         <br />
-        <Button variant="contained" color="secondary" type="submit"> Submit </Button>
+        <Button variant="contained" color="primary" type="submit"> Submit </Button>
       </form>
 
     </Container>

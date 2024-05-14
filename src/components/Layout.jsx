@@ -8,7 +8,7 @@ export function Layout() {
     const [mobileOpen, setMobileOpen] = useState(false)
     return (
         <div className="flex">
-            <HeaderBar />
+            <HeaderBar setMobileOpen={setMobileOpen} />
 
             <Hidden smUp implementation="css">
                 <SideBarMobile mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />

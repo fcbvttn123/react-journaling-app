@@ -1,13 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { AllJournals } from "./pages/journals/AllJournals"
 import { CreateJournal } from "./pages/create-journal/CreateJournal"
+import { Layout } from "./components/Layout"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AllJournals />}/>
-        <Route path="/create" element={<CreateJournal />}/>
+        <Route element={<Layout />}>
+          <Route path="/" element={<AllJournals />}/>
+          <Route path="/create" element={<CreateJournal />}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   )

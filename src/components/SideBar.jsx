@@ -1,6 +1,8 @@
 import { Drawer, makeStyles, useTheme } from "@material-ui/core"
+import { DrawerItems } from "./DrawerItems";
 
 const drawerWidth = 240;
+
 const useStyles = makeStyles(theme => ({
     drawer: {
         [theme.breakpoints.up('sm')]: {
@@ -18,7 +20,7 @@ export function SideBarDesktop() {
     return (
         <nav className={classes.drawer}>
             <Drawer variant="permanent" open={true} classes={{ paper: classes.drawerPaper}}>
-
+                <DrawerItems />
             </Drawer>
         </nav>
     )
@@ -30,7 +32,7 @@ export function SideBarMobile({mobileOpen, setMobileOpen}) {
     return (
         <nav className={classes.drawer}>
             <Drawer variant="temporary" anchor={theme.direction === "rtl" ? "right" : "left"} open={mobileOpen} onClose={() => setMobileOpen(!mobileOpen)} classes={{ paper: classes.drawerPaper, }}>
-            
+                <DrawerItems />
             </Drawer>
         </nav>
     )

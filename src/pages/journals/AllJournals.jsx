@@ -6,7 +6,7 @@ const localStorageKey = "react-journal-app"
 export function AllJournals() {
 
     return (
-        <div>
+        <div className="mt-24">
 
             {/* Cards */}
             <Grid container spacing={3} justifyContent="center" alignItems="center">

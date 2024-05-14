@@ -26,6 +26,8 @@ export function CreateJournal() {
 
     <Container>
 
+      <div className="h-24 w-full"></div>
+
       {/* Header Text */}
       <Typography variant="h4" component="h1" color="secondary" name="date" value={formData.date} gutterBottom>
         Create Your Today's Journal

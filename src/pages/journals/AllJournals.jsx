@@ -11,6 +11,7 @@ export function AllJournals() {
             {/* Cards */}
             <Grid container spacing={3} justifyContent="center" alignItems="center">
                 {
+                    JSON.parse(localStorage.getItem(localStorageKey)) && 
                     JSON.parse(localStorage.getItem(localStorageKey)).map((e, i) => 
                         <Grid key={i} item xs={12} sm={6} lg={4}>
                             <JournalCard avatar={"F"} title={e.daySummary} date={e.date} content={e.description} />

@@ -1,8 +1,7 @@
-const localStorageKey = "react-journal-app"
+import { useAddToCollection } from "../../hooks/addCollection"
+import { journalsCollection } from "../../config/firebase"
 
-export function useHandleFormSubmit(formSubmitEvent, newData) {
+export async function useHandleFormSubmit(formSubmitEvent, data) {
     formSubmitEvent.preventDefault()
-    let allJournals = JSON.parse(localStorage.getItem(localStorageKey)) || []
-    allJournals.push(newData)
-    localStorage.setItem(localStorageKey, JSON.stringify(allJournals))
+    useAddToCollection(journalsCollection, data)
 }

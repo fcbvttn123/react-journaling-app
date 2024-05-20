@@ -28,4 +28,4 @@ export async function startGoogleLogin() {
 
 // Firestore Database 
 const firestore = getFirestore(app)
-export const journalsTable = collection(firestore, "journals")
+export const journalsCollection = collection(firestore, "journals")

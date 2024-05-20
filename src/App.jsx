@@ -32,6 +32,8 @@ export default App
 
 // Solution to the error of Material UI Installation: https://stackoverflow.com/questions/72596908/could-not-resolve-dependency-error-peer-react16-8-0-17-0-0-from-materia
 
-// Error Text for text field
+// Add a popup when user submit a journal successfully
 
-// Clean code 
+// Empty all text boxes after submitting a journal 
+
+// Change header bar to the user information 

@@ -7,6 +7,8 @@ import { Login } from "./pages/login/Login"
 import { Layout } from "./components/Layout"
 import { AuthCheck } from "./components/AuthCheck"
 
+export const localStorageKeyForAccountInfo = "fcbvttn-react-journaling-app-accountInfo"
+
 function App() {
   return (
     <BrowserRouter>

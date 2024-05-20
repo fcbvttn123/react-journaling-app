@@ -1,11 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom"
+import { localStorageKeyForAccountInfo } from "../App"
 
 export function AuthCheck() {
-    const authenticated = JSON.parse(localStorage.getItem("fcbvttn-react-journaling-app-accountInfo")) 
+    const authenticated = JSON.parse(localStorage.getItem(localStorageKeyForAccountInfo)) 
     if(!authenticated) {
-        // console.log("auth")
         return <Navigate to={"/login"} />
     }
-    // console.log("not auth")
     return <Outlet />
 }

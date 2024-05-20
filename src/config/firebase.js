@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { collection, getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,6 +22,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 export async function startGoogleLogin() {
-    let res = await signInWithPopup(auth, provider)
-    return res.user
+  let res = await signInWithPopup(auth, provider)
+  return res.user
 }
+
+// Firestore Database 
+const firestore = getFirestore(app)
+export const journalsTable = collection(firestore, "journals")

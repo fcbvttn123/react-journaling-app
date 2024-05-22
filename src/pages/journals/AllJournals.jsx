@@ -1,8 +1,8 @@
-import { Grid, Typography } from "@material-ui/core";
-import { JournalCard } from "../../components/Card";
+import { Typography } from "@material-ui/core";
 import { useGetAllFromCollection } from "../../hooks/getCollection"
 import { journalsCollection } from "../../config/firebase";
 import { useState, useEffect } from "react";
+import { JournalsRenderer } from "./JournalsRenderer";
 
 export function AllJournals() {
 
@@ -32,16 +32,7 @@ export function AllJournals() {
                 ?
                 <Typography variant="h1" color="primary">Loading...</Typography>
                 :
-                <Grid container spacing={3} justifyContent="center" alignItems="center">
-                    {
-                        journals && 
-                        journals.map((e, i) => 
-                            <Grid key={i} item xs={12} sm={6} lg={4}>
-                                <JournalCard avatar={"F"} title={e.daySummary} date={e.date} content={e.description} />
-                            </Grid>
-                        )
-                    }
-                </Grid>
+                <JournalsRenderer journals={journals}/>
             }
 
         </div>

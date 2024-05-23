@@ -1,10 +1,21 @@
-import { Divider, List, ListItem, ListItemIcon, ListItemText, makeStyles } from "@material-ui/core"
+import { Avatar, Card, CardHeader, Divider, List, ListItem, ListItemIcon, ListItemText, makeStyles } from "@material-ui/core"
 import CreateNewFolderRoundedIcon from '@material-ui/icons/CreateNewFolderRounded';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import { useLocation, useNavigate } from "react-router-dom";
+import { useGetAccountInfo } from "../hooks/useGetAccountInfo";
+import { blue, purple, red } from "@material-ui/core/colors";
+import { format } from "date-fns";
 
 const useStyles = makeStyles(theme => ({
     toolbar: theme.mixins.toolbar,
+    card: {
+        maxWidth: 345, 
+        paddingBottom: 5,
+        paddingTop: 5
+    },
+    avatar: {
+        backgroundColor: blue[900],
+    },
 }))
 
 const navigations = [
@@ -16,9 +27,18 @@ export function DrawerItems() {
     const classes = useStyles()
     const navigate = useNavigate()
     const location = useLocation()
+    const accountInfo = useGetAccountInfo()
     return (
         <div>
-            <div className={classes.toolbar} />
+            <Card className={classes.card}>
+                <CardHeader 
+                    avatar={
+                        <Avatar aria-label="recipe" className={classes.avatar}>{accountInfo.displayName[0]}</Avatar>
+                    }
+                    title={accountInfo.displayName}
+                    subheader={format(new Date(), "yyyy-MM-dd")}
+                />
+            </Card>
             <Divider />
             <List>
                 {navigations.map((e, i) => (

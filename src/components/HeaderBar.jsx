@@ -2,6 +2,7 @@ import { AppBar, IconButton, InputBase, Toolbar, Typography, alpha, makeStyles }
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { drawerWidth } from "./SideBar";
+import { useGetAccountInfo } from "../hooks/useGetAccountInfo"
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -71,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
 export function HeaderBar({setMobileOpen}) {
     const classes = useStyles()
+    const accountInfo = useGetAccountInfo()
     return (
         <div>
             <AppBar className={classes.appBar}>
@@ -78,7 +80,7 @@ export function HeaderBar({setMobileOpen}) {
                     <IconButton edge="start" className={classes.menuButton} color="inherit" onClick={() => setMobileOpen(prev => !prev)}>
                         <MenuIcon />
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>Hello David</Typography>
+                    <Typography className={classes.title} variant="h6" noWrap>Hi {accountInfo.displayName}</Typography>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}> <SearchIcon /> </div>
                         <InputBase placeholder="Search…" classes={{ root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }} />

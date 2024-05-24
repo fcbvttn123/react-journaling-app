@@ -1,10 +1,12 @@
-import { Avatar, Card, CardHeader, Divider, List, ListItem, ListItemIcon, ListItemText, makeStyles } from "@material-ui/core"
+import { Avatar, Card, CardHeader, Divider, IconButton, List, ListItem, ListItemIcon, ListItemText, makeStyles } from "@material-ui/core"
 import CreateNewFolderRoundedIcon from '@material-ui/icons/CreateNewFolderRounded';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGetAccountInfo } from "../hooks/useGetAccountInfo";
 import { blue, purple, red } from "@material-ui/core/colors";
 import { format } from "date-fns";
+import { ExitToApp } from "@material-ui/icons";
+import { useLogout } from "../hooks/logout";
 
 const useStyles = makeStyles(theme => ({
     toolbar: theme.mixins.toolbar,
@@ -34,6 +36,11 @@ export function DrawerItems() {
                 <CardHeader 
                     avatar={
                         <Avatar aria-label="recipe" className={classes.avatar}>{accountInfo.displayName[0]}</Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings" onClick={() => useLogout(navigate)}>
+                            <ExitToApp />
+                        </IconButton>
                     }
                     title={accountInfo.displayName}
                     subheader={format(new Date(), "yyyy-MM-dd")}

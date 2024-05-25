@@ -4,6 +4,7 @@ import { journalsCollection } from "../../config/firebase";
 import { useState, useEffect } from "react";
 import { JournalsRenderer } from "./JournalsRenderer";
 import { useSortArrayByDate } from "./useSortArrayByDate"
+import { useSortArrayIntoGroups } from "./useSortArrayIntoGroups";
 
 export function AllJournals() {
 
@@ -15,6 +16,9 @@ export function AllJournals() {
             setLoading(true)
             try {
                 let data = await useGetAllFromCollection(journalsCollection)
+                // Is testing: Start
+                useSortArrayIntoGroups(data)
+                // Is testing: End
                 setJournals(useSortArrayByDate(data))
             } catch(error) {
                 console.error(error)

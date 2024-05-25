@@ -3,6 +3,7 @@ import { useGetAllFromCollection } from "../../hooks/getCollection"
 import { journalsCollection } from "../../config/firebase";
 import { useState, useEffect } from "react";
 import { JournalsRenderer } from "./JournalsRenderer";
+import { useSortArrayByDate } from "./useSortArrayByDate"
 
 export function AllJournals() {
 
@@ -14,7 +15,7 @@ export function AllJournals() {
             setLoading(true)
             try {
                 let data = await useGetAllFromCollection(journalsCollection)
-                setJournals(data)
+                setJournals(useSortArrayByDate(data))
             } catch(error) {
                 console.error(error)
             } finally {

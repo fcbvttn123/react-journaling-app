@@ -36,6 +36,4 @@ export default App
 
 // Empty all text boxes after submitting a journal 
 
-// Sort Journals by Date 
-
 // Add Month/Year 

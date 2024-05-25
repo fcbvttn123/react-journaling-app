@@ -4,7 +4,6 @@ import { useGetAccountInfo } from "../../hooks/useGetAccountInfo";
 
 export function JournalsRenderer({journals}) {
     const accountInfo = useGetAccountInfo()
-    console.log(accountInfo)
     return (
         <Grid container spacing={3} justifyContent="center" alignItems="center">
             {

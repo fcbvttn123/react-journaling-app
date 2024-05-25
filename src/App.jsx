@@ -32,8 +32,10 @@ export default App
 
 // Solution to the error of Material UI Installation: https://stackoverflow.com/questions/72596908/could-not-resolve-dependency-error-peer-react16-8-0-17-0-0-from-materia
 
-// Clean DrawerItems Component 
-
 // Add a popup when user submit a journal successfully
 
 // Empty all text boxes after submitting a journal 
+
+// Sort Journals by Date 
+
+// Add Month/Year 

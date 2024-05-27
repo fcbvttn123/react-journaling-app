@@ -15,7 +15,7 @@ export function AllJournals() {
             setLoading(true)
             try {
                 let data = await useGetAllFromCollection(journalsCollection)
-                setJournals(useSortArrayByDate(data))
+                setJournals(data.length > 0 ? useSortArrayByDate(data) : [])
             } catch(error) {
                 console.error(error)
             } finally {

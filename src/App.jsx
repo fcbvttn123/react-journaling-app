@@ -34,6 +34,8 @@ export default App
 
 // Material UI Lab Installation: https://stackoverflow.com/questions/60345074/how-to-import-alert-alerttitle-component-with-materialui
 
+// Clean code of Form.jsx file 
+
 // Masonry Grid 
 
 // Truncate Cards 

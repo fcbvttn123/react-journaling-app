@@ -20,7 +20,16 @@ export function Form() {
         daySummary: "",
     })
     return (
-        <form onSubmit={(e) => useHandleFormSubmit(e, formData)}>
+        <form onSubmit={(e) => {
+            setFormData(
+                {
+                    date: format(new Date(), "yyyy-MM-dd"),
+                    description: "",
+                    daySummary: "",
+                }
+            )
+            useHandleFormSubmit(e, formData)
+        }}>
             <TextField 
                 id="date" 
                 name="date" 
@@ -50,9 +59,9 @@ export function Form() {
             <FormControl component="fieldset">
                 <FormLabel component="legend" color="primary"> Your day summary </FormLabel>
                 <RadioGroup onChange={(e) => setFormData(useHandleFormItemChange(e, formData))} name="daySummary" color="primary" >
-                    <FormControlLabel value="bad" control={<Radio color="primary" />} label="Bad" color="primary" />
-                    <FormControlLabel value="normal" label="Normal" control={<Radio color="primary" />} color="primary" />
-                    <FormControlLabel value="good" control={<Radio color="primary" />} label="Good" color="primary" />
+                    <FormControlLabel value="bad" control={<Radio color="primary" checked={formData.daySummary == "bad"} />} label="Bad" color="primary" />
+                    <FormControlLabel value="normal" label="Normal" control={<Radio color="primary" checked={formData.daySummary == "normal"} />} color="primary" />
+                    <FormControlLabel value="good" control={<Radio color="primary" checked={formData.daySummary == "good"} />} label="Good" color="primary" />
                 </RadioGroup>
             </FormControl>
             <br />

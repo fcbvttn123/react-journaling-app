@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function Form() {
-    const classes = useStyles();
+    const classes = useStyles()
     const [formData, setFormData] = useState({
         date: format(new Date(), "yyyy-MM-dd"),
         description: "",
         daySummary: "",
-    });
+    })
     return (
         <form onSubmit={(e) => useHandleFormSubmit(e, formData)}>
             <TextField 

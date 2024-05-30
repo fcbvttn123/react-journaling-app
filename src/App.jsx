@@ -32,4 +32,8 @@ export default App
 
 // Solution to the error of Material UI Installation: https://stackoverflow.com/questions/72596908/could-not-resolve-dependency-error-peer-react16-8-0-17-0-0-from-materia
 
-// Add a popup when user submit a journal successfully
+// Material UI Lab Installation: https://stackoverflow.com/questions/60345074/how-to-import-alert-alerttitle-component-with-materialui
+
+// Masonry Grid 
+
+// Truncate Cards 

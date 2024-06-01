@@ -4,8 +4,8 @@ import { useHandleFormItemChange } from "./handleFormItemChange";
 import { useState } from "react";
 import { format } from "date-fns";
 
-import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Snackbar, TextField, makeStyles } from "@material-ui/core";
-import MuiAlert from '@material-ui/lab/Alert'
+import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, makeStyles } from "@material-ui/core";
+import { SubmitConfirmationPopUp } from "./SubmitConfirmationPopup";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -15,24 +15,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
 export function Form() {
+
     const classes = useStyles()
-    const [open, setOpen] = useState(false);
+    const [popupOpened, setPopupOpened] = useState(false)
+
     const [formData, setFormData] = useState({
         date: format(new Date(), "yyyy-MM-dd"),
         description: "",
         daySummary: "",
     })
-    const handleClose = (event, reason) => {
+
+    function closePopup(event, reason) {
         if (reason === 'clickaway') {
             return
         }
-        setOpen(false)
-    };
+        setPopupOpened(false)
+    }
+
     return (
         <>
             <form onSubmit={(e) => {
@@ -43,7 +43,7 @@ export function Form() {
                         daySummary: "",
                     }
                 )
-                setOpen(true)
+                setPopupOpened(true)
                 useHandleFormSubmit(e, formData)
             }}>
                 <TextField 
@@ -84,9 +84,8 @@ export function Form() {
                 <br />
                 <Button variant="contained" color="primary" type="submit"> Submit </Button>
             </form>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success">Journal Submitted!</Alert>
-            </Snackbar>
+            <SubmitConfirmationPopUp popupOpened={popupOpened} closePopup={closePopup}/>
         </>
     )
+
 }

@@ -5,10 +5,10 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-export function SubmitConfirmationPopUp({popupOpened, closePopup}) {
+export function SubmitConfirmationPopUp({open, handleClosePopup}) {
     return (
-        <Snackbar open={popupOpened} autoHideDuration={6000} onClose={closePopup}>
-            <Alert onClose={closePopup} severity="success">Journal Submitted!</Alert>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClosePopup}>
+            <Alert onClose={handleClosePopup} severity="success">Journal Submitted!</Alert>
         </Snackbar>
     )
 }

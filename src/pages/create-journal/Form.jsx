@@ -26,26 +26,25 @@ export function Form() {
         daySummary: "",
     })
 
-    function closePopup(event, reason) {
-        if (reason === 'clickaway') {
-            return
-        }
-        setPopupOpened(false)
-    }
-
     return (
         <>
-            <form onSubmit={(e) => {
-                setFormData(
-                    {
-                        date: format(new Date(), "yyyy-MM-dd"),
-                        description: "",
-                        daySummary: "",
-                    }
-                )
-                setPopupOpened(true)
-                useHandleFormSubmit(e, formData)
-            }}>
+            {/* Form */}
+            <form 
+                onSubmit={(e) => {
+                    // Empty form after submission
+                    setFormData(
+                        {
+                            date: format(new Date(), "yyyy-MM-dd"),
+                            description: "",
+                            daySummary: "",
+                        }
+                    )
+                    // Open popup
+                    setPopupOpened(true)
+                    // Add journal to database 
+                    useHandleFormSubmit(e, formData)
+                }}
+            >
                 <TextField 
                     id="date" 
                     name="date" 
@@ -84,7 +83,18 @@ export function Form() {
                 <br />
                 <Button variant="contained" color="primary" type="submit"> Submit </Button>
             </form>
-            <SubmitConfirmationPopUp popupOpened={popupOpened} closePopup={closePopup}/>
+
+            {/* Popup confirming Journal Submitted */}
+            {/* Only appear when user clicks Submit button of the form */}
+            <SubmitConfirmationPopUp 
+                open={popupOpened} 
+                handleClosePopup={(event, reason) => {
+                    if (reason === 'clickaway') {
+                        return
+                    }
+                    setPopupOpened(false)
+                }}
+            />
         </>
     )
 

@@ -18,7 +18,7 @@ export function JournalsRenderer({journals}) {
                         {/* If the previous card is not null, do the if statement: if the current card and the previous card are not in the same month, render the Divider */}
                         {journals[i-1] && (isSameMonth(e.date, journals[i-1].date) || <Divider key={v4} indexNumber={i}>{format(e.date, "LLLL yyyy")}</Divider>)}
                         
-                        <Grid item key={i} xs={12} sm={6} lg={4}>
+                        <Grid item key={i} xs={12} sm={6} lg={4} className="bg-red-500 border-2">
                             <JournalCard avatar={accountInfo.displayName[0]} title={e.daySummary} date={e.date} content={e.description} />
                         </Grid>
                     </>

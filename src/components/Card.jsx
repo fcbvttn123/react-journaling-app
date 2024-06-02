@@ -7,7 +7,8 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        maxWidth: 500,
+        height: 300
     },
     media: {
         height: 0,
@@ -65,3 +66,8 @@ export function JournalCard({avatar, title, date, content}) {
     )
 
 }
+
+
+
+
+// https://stackoverflow.com/questions/53221621/how-to-wrap-or-truncate-long-strings-in-a-material-ui-expansionpanelsummary

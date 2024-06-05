@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function JournalCard({avatar, title, date, content}) {
+export function JournalCard({title, date, content}) {
 
     const classes = useStyles();
     let avatarColor = classes.avatarGreenColor
@@ -50,7 +50,7 @@ export function JournalCard({avatar, title, date, content}) {
     return (
         <Card className={classes.root} elevation={6} style={{marginLeft: "auto", marginRight: "auto"}}>
             <CardHeader 
-                avatar={<Avatar className={avatarColor}>{avatar}</Avatar>} 
+                avatar={<Avatar className={avatarColor}>{useCapitalizeFirstLetter(title)[0]}</Avatar>} 
                 title={<Typography variant="h6" component="h1">{`${useCapitalizeFirstLetter(title)} Day`}</Typography>}
                 subheader={date}
                 action={<IconButton onClick={() => console.log("hi")}> <DeleteIcon /> </IconButton>}
@@ -60,10 +60,15 @@ export function JournalCard({avatar, title, date, content}) {
                     {useCapitalizeFirstLetter(content)}
                 </Typography>
             </CardContent>
-            {/* <p className="px-5 truncate-overflow">
-                {useCapitalizeFirstLetter(content)}
-            </p> */}
         </Card>
     )
-
+    
 }
+
+
+
+
+
+{/* <p className="px-5 truncate-overflow">
+    {useCapitalizeFirstLetter(content)}
+</p> */}

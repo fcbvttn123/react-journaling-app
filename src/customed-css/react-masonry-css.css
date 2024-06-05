@@ -1,0 +1,25 @@
+/* NPM Library: react-masonry-css */
+/* Youtube Tutorial: https://www.youtube.com/watch?v=PLzx2thLQaU&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=18 */
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div {
+  /* change div to reference your elements you put in <Masonry> */
+  margin-bottom: 30px;
+}
+
+/* Style your divider item */
+.my-masonry-grid_column > div.divider-item {
+  
+}

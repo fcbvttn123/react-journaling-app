@@ -4,11 +4,22 @@ import { useGetAccountInfo } from "../../hooks/useGetAccountInfo";
 import { format, isSameMonth } from "date-fns";
 import { Divider } from "./Divider";
 import { v4 } from "uuid";
+import "../../customed-css/react-masonry-css.css"
+import Masonry from "react-masonry-css";
 
 export function JournalsRenderer({journals}) {
     const accountInfo = useGetAccountInfo()
+    const breakpointColumnsObj = {
+        default: 3,
+        1520: 2,
+        760: 1
+    };
     return (
-        <Grid container spacing={3} justifyContent="center" alignItems="center">
+        <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+        >
             {
                 journals.map((e, i) => 
                     <>
@@ -18,12 +29,12 @@ export function JournalsRenderer({journals}) {
                         {/* If the previous card is not null, do the if statement: if the current card and the previous card are not in the same month, render the Divider */}
                         {journals[i-1] && (isSameMonth(e.date, journals[i-1].date) || <Divider key={v4} indexNumber={i}>{format(e.date, "LLLL yyyy")}</Divider>)}
                         
-                        <Grid item key={i} xs={12} sm={6} lg={4}>
+                        <div>
                             <JournalCard avatar={accountInfo.displayName[0]} title={e.daySummary} date={e.date} content={e.description} />
-                        </Grid>
+                        </div>
                     </>
                 )
             }
-        </Grid>
+        </Masonry>
     )
 }

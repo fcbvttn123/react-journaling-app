@@ -1,4 +1,4 @@
-import { Grid, Typography, makeStyles } from "@material-ui/core";
+import { Typography, makeStyles } from "@material-ui/core";
 import { clsx } from "clsx";
 
 const useStyles = makeStyles({
@@ -13,8 +13,8 @@ const useStyles = makeStyles({
 export function Divider({children, indexNumber}) {
     const classes = useStyles()
     return (
-        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+        <div className="divider-item">
             <Typography variant="h4" className={clsx(indexNumber !== 0 && classes.marginTop, classes.greyText)}>{children}</Typography>
-        </Grid>
+        </div>
     )
 }

@@ -2,13 +2,11 @@ import { Avatar, Card, CardContent, CardHeader, IconButton, Typography, makeStyl
 import { green, grey, pink } from '@material-ui/core/colors';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useCapitalizeFirstLetter } from "../hooks/capitalizeFirstLetter";
-
-const drawerWidth = 240;
+import "../customed-css/text-truncate.css"
 
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 500,
-        height: 300
     },
     media: {
         height: 0,
@@ -62,12 +60,10 @@ export function JournalCard({avatar, title, date, content}) {
                     {useCapitalizeFirstLetter(content)}
                 </Typography>
             </CardContent>
+            {/* <p className="px-5 truncate-overflow">
+                {useCapitalizeFirstLetter(content)}
+            </p> */}
         </Card>
     )
 
 }
-
-
-
-
-// https://stackoverflow.com/questions/53221621/how-to-wrap-or-truncate-long-strings-in-a-material-ui-expansionpanelsummary
